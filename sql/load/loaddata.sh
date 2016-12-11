@@ -29,7 +29,7 @@ do
   file="/home/robins/projects/tpcds-kit/data/$test.dat"
   if [ -e $file ]
   then
-    psql -1 -U postgres -h localhost -c "\COPY $test FROM '$file' CSV;" tpc2 && \
+    psql -1 -U postgres -h localhost -c "\COPY $test FROM '$file' NULL AS '' DELIMITER AS '|' CSV;" tpc2 && \
       inserted_any_set=1
   else
     echo File not found: $file
