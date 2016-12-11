@@ -24,3 +24,4 @@ psql -1 -U postgres -h localhost -c "\COPY web_returns            FROM '/home/ro
 psql -1 -U postgres -h localhost -c "\COPY web_sales              FROM '/home/robins/projects/tpcds-kit/tools/tmp/web_sales.dat'              DELIMITER '|' CSV;" tpc2
 psql -1 -U postgres -h localhost -c "\COPY web_site               FROM '/home/robins/projects/tpcds-kit/tools/tmp/web_site.dat'               DELIMITER '|' CSV;" tpc2
 
+psql    -U postgres -h localhost -c "VACUUM FULL; ANALYSE;" tpc2
