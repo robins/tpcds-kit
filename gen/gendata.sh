@@ -10,6 +10,5 @@ mv ../data/*.dat old
 #../tools/dsdgen -quiet Y -scale 1 -parallel 4 -child 3 -delimiter ',' -dir ../data &
 #../tools/dsdgen -quiet Y -scale 1 -parallel 4 -child 4 -delimiter ',' -dir ../data &
 
-sed -i 's/|$//' ../data/*.dat
-
 wait
+sed -i 's/|$//' ../data/*.dat
