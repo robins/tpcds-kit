@@ -6,7 +6,6 @@ customer_address
 customer
 customer_demographics
 date_dim
-dbgen_version
 household_demographics
 income_band
 inventory
@@ -29,7 +28,8 @@ do
   file="/home/robins/projects/tpcds-kit/data/$test.dat"
   if [ -e $file ]
   then
-    psql -1 -U postgres -h localhost -c "\COPY $test FROM '$file' NULL AS '' DELIMITER AS '|' CSV;" tpc2 && \
+    echo -n "Processing ${test}: "
+    psql -1 -U postgres -c "\COPY $test FROM '$file' NULL AS '' DELIMITER AS '|' CSV;" tpc2 && \
       inserted_any_set=1
   else
     echo File not found: $file
@@ -38,8 +38,8 @@ done
 
 if [ $inserted_any_set ]
 then
-  psql    -U postgres -h localhost -c "VACUUM FULL;" tpc2
-  psql    -U postgres -h localhost -c "ANALYSE;" tpc2
+  psql    -U postgres -c "VACUUM FULL;" tpc2
+  psql    -U postgres -c "ANALYSE;" tpc2
 else
   echo Not performing VACUUM / ANALYSE since no data inserted.
 fi
